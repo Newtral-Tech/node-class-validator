@@ -31,6 +31,24 @@ const errors = validateSync(new User());
 console.log(errors.length); // 0
 ```
 
+### @IsObjectId()
+
+Validate the value is a valid object id. Could be numeric, string or another object id. It could
+useful to pair with the
+[ToObjectId](https://www.npmjs.com/package/@newtral/class-transformer#toobjectid) transformer in
+order to always convert to an object id instance
+
+```typescript
+import { IsString, validateSync } from 'class-validator';
+import { IsOptional } from '@newtral/class-validator';
+import { ObjectId } from 'mongo';
+
+class User {
+  @IsObjectId()
+  _id?: string | number | ObjectId;
+}
+```
+
 ## Development
 
 The project use [husky](https://github.com/typicode/husky) and
