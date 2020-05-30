@@ -8,6 +8,29 @@ npm install @newtral/class-validator class-validator
 
 ## Usage
 
+### @IsOptional()
+
+Validate when the original value is not undefined. Unlike the class-validator one that allows both
+`null` and `undefined`
+
+```typescript
+import { IsString, validateSync } from 'class-validator';
+import { IsOptional } from '@newtral/class-validator';
+
+class User {
+  @IsOptional()
+  @IsString()
+  name?: string;
+
+  constructor(name?: string) {
+    this.name = name;
+  }
+}
+
+const errors = validateSync(new User());
+console.log(errors.length); // 0
+```
+
 ## Development
 
 The project use [husky](https://github.com/typicode/husky) and
