@@ -1,4 +1,3 @@
-// eslint-disable-next-line max-classes-per-file
 import { IsObjectId } from '@newtral/class-validator';
 import { ObjectId } from 'bson';
 import { expect } from 'chai';
@@ -18,6 +17,20 @@ describe('@IsObjectId()', () => {
     const errors = validateSync(new Test(id));
 
     expect(errors).to.be.deep.equals([]);
+  });
+
+  it('should return false when the value is null', () => {
+    // @ts-expect-error
+    const errors = validateSync(new Test(null));
+
+    expect(errors[0].constraints).to.be.deep.equal({ isObjectId: 'test must be a valid object id' });
+  });
+
+  it('should return false when the value is undefined', () => {
+    // @ts-expect-error
+    const errors = validateSync(new Test(undefined));
+
+    expect(errors[0].constraints).to.be.deep.equal({ isObjectId: 'test must be a valid object id' });
   });
 
   it('should validate an object id ', () => {

@@ -12,7 +12,11 @@ export function IsObjectId(validationOptions?: ValidationOptions): PropertyDecor
 
 @ValidatorConstraint({ name: 'isObjectId' })
 export class IsObjectIdValidator implements ValidatorConstraintInterface {
-  validate(objectId?: string | number | ObjectId): boolean {
+  validate(objectId?: string | number | ObjectId | null): boolean {
+    if (objectId == null) {
+      return false;
+    }
+
     if (typeof objectId === 'string') {
       return this.isObjectId(objectId);
     }
