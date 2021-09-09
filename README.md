@@ -55,21 +55,21 @@ The project use [husky](https://github.com/typicode/husky) and
 [lint-staged](https://github.com/okonet/lint-staged) for linting and fixing possible errors on
 source code before commit
 
-Git hooks scripts are installed after running `yarn` the first time
+Git hooks scripts are installed after running `npm install` the first time
 
-### yarn build:commonjs
+### npm run build:commonjs
 
 Compile typescript files from the `src` folder inside the `lib` folder
 
-### yarn build:esm
+### npm run build:esm
 
 Compile typescript files from the `src` folder inside the `esm` folder using es modules
 
-### yarn build
+### npm run build
 
 Concurrently run both `build:commonjs` and `build:esm`
 
-### yarn clean
+### npm run clean
 
 Remove the following directories/files
 
@@ -77,7 +77,7 @@ Remove the following directories/files
 - **esm**
 - **reports**
 
-### yarn test
+### npm test
 
 Run tests files inside the `tests` folder that matches the following patterns. Exit with code > 0 on
 error
@@ -85,20 +85,20 @@ error
 - **\*.test.ts**
 - **\*.spec.ts**
 
-### yarn cover
+### npm run cover
 
-The same as as `yarn test` and generates coverages reports in `reports/coverage`. Exit with code > 0
-on error
+The same as `npm test` and generates coverages reports in `reports/coverage`. Exit with code > 0 on
+error
 
-### yarn lint
+### npm run lint
 
 Check eslint errors according to `.eslintrc`
 
-### yarn lint:fix
+### npm run lint:fix
 
-Run `yarn lint` applying fixes and run prettier on every typescript file
+Run `npm run lint` applying fixes and run prettier on every typescript file
 
-### yarn health
+### npm run health
 
 Check for:
 
@@ -106,7 +106,7 @@ Check for:
 - Tests failures
 - Lint errors
 
-### yarn ci
+### npm run ci
 
 Run test and generate every possible report. Do not exit with error code > 0 if the tests fail. It
 generates a report file instead
@@ -117,11 +117,3 @@ generates a report file instead
 - **reports/coverage/cobertura-coverage.xml** Coverage report in cobertura format
 - **reports/coverage/lcov.info** Coverage report in lcov
 - **reports/coverage/index.html** Coverage report in html
-
-### yarn release
-
-- Bump `package.json` version accordingly to the commit messages
-- Generate changelog for the new version from the commit messages
-- Commit `package.json` and `CHANGELOG.md` with the new changes
-- Create a git tag with the new version
-- You'll need to execute `git push --follow-tags origin master` after generating a release
