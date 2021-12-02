@@ -1,4 +1,3 @@
-import { ObjectId } from 'bson';
 import { Validate, ValidationArguments, ValidationOptions, ValidatorConstraint, ValidatorConstraintInterface } from 'class-validator';
 
 /**
@@ -12,7 +11,7 @@ export function IsObjectId(validationOptions?: ValidationOptions): PropertyDecor
 
 @ValidatorConstraint({ name: 'isObjectId' })
 export class IsObjectIdValidator implements ValidatorConstraintInterface {
-  validate(objectId?: string | number | ObjectId | null): boolean {
+  validate(objectId?: unknown): boolean {
     if (objectId == null) {
       return false;
     }
@@ -25,8 +24,8 @@ export class IsObjectIdValidator implements ValidatorConstraintInterface {
       return this.isObjectId(objectId.toString(16));
     }
 
-    if (typeof objectId === 'object' && typeof objectId.toHexString === 'function') {
-      return this.isObjectId(objectId.toHexString());
+    if (typeof objectId === 'object' && typeof (objectId as any).toHexString === 'function') {
+      return this.isObjectId((objectId as any).toHexString());
     }
 
     if (typeof objectId === 'object') {
