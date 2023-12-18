@@ -1,6 +1,6 @@
 {
   "name": "@newtral/class-validator",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "Decorator based validation augmenting the class-validator module",
   "main": "lib/index.js",
   "module": "esm/index.js",
