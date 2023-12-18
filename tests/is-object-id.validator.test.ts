@@ -2,7 +2,7 @@ import { IsObjectId } from '@newtral/class-validator';
 import { ObjectId } from 'bson';
 import { expect } from 'chai';
 import { validateSync } from 'class-validator';
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 
 describe('@IsObjectId()', () => {
   it('should validate a string object id', () => {
@@ -41,7 +41,7 @@ describe('@IsObjectId()', () => {
   });
 
   it('should return an error when the value is not an object id', () => {
-    const id = faker.random.uuid();
+    const id = faker.string.uuid();
     const errors = validateSync(new Test(id));
 
     expect(errors[0].constraints).to.be.deep.equal({ isObjectId: 'test must be a valid object id' });
